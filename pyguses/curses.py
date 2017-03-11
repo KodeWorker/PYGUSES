@@ -234,6 +234,20 @@ class Curses():
         y_ind = int(np.floor(y / self.cell_height))
         return (x_ind, y_ind)
 
+    def get_cell_section(self, x, y, width, height):
+        section = np.empty([height, width], dtype=dict)
+        for i in range(height):
+            for j in range(width):
+                section[i, j] = self.get_cell(x + j, y + i).copy()
+        return section
+    
+    def set_cell_section(self, x, y, sec):
+        height = sec.shape[0]
+        width = sec.shape[1]
+        for i in range(height):
+            for j in range(width):
+                self.set_cell(x + j, y + i, sec[i, j])
+    
 class Flicker():
     def __init__(self, curses, flick_type=0, interval=1000):
         self.curses = curses
