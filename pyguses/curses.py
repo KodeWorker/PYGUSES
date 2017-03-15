@@ -63,6 +63,7 @@ class Curses():
         # Generate background surface
         self.background = pygame.Surface((self.screen_width, self.screen_height))
         self.background.fill(colornames[self.color])
+        self.foreground = pygame.Surface([self.screen_width, self.screen_height], pygame.SRCALPHA, 32).convert_alpha()        
     
     # Clear window
     def clear_window(self):
