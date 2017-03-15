@@ -2,26 +2,8 @@ import os
 import configparser
 import pygame
 import numpy as np
+from .color import colornames
 from .util import check_divisibility
-
-# A mapping of strings to color objects.
-colornames = {'white':   pygame.Color(255, 255, 255, 255),
-              'yellow':  pygame.Color(255, 255,   0, 255),
-              'fuchsia': pygame.Color(255,   0, 255, 255),
-              'red':     pygame.Color(255,   0,   0, 255),
-              'silver':  pygame.Color(192, 192, 192, 255),
-              'gray':    pygame.Color(128, 128, 128, 255),
-              'olive':   pygame.Color(128, 128,   0, 255),
-              'purple':  pygame.Color(128,   0, 128, 255),
-              'maroon':  pygame.Color(128,   0,   0, 255),
-              'aqua':    pygame.Color(  0, 255, 255, 255),
-              'lime':    pygame.Color(  0, 255,   0, 255),
-              'teal':    pygame.Color(  0, 128, 128, 255),
-              'green':   pygame.Color(  0, 128,   0, 255),
-              'blue':    pygame.Color(  0,   0, 255, 255),
-              'navy':    pygame.Color(  0,   0, 128, 255),
-              'black':   pygame.Color(  0,   0,   0, 255),
-              'trans':   pygame.Color(255,   0, 255,   0)}
 
 class Curses():
     
@@ -85,10 +67,10 @@ class Curses():
                 image_array[i ,j] = pygame.transform.scale(image_array[i ,j], (self.cell_width, self.cell_height))
         return image_array
     
-    def put_char(self, x, y, char=' ', foreground='white', background='trans'):
+    def put_char(self, x, y, char=' ', foreground='white', background='transparent'):
             self.window[y, x] = {'char' : char, 'foreground' : foreground, 'background' : background}
     
-    def put_message(self, x, y , message, foreground='white', background='trans', auto=True, align='left', box_x=0, box_y=0, box_width=None, box_height=None):
+    def put_message(self, x, y , message, foreground='white', background='transparent', auto=True, align='left', box_x=0, box_y=0, box_width=None, box_height=None):
         if box_width == None:
             box_width = self.win_width
         if box_height == None:
@@ -269,7 +251,7 @@ class Flicker():
     def load_cell(self, x, y):
         # Generate flick dictionary
         if self.flick_type == 0:
-            flick = {'char' : ' ', 'foreground' : 'trans', 'background' : 'trans'}
+            flick = {'char' : ' ', 'foreground' : 'transparent', 'background' : 'transparent'}
         elif self.flick_type == 1:
             flick = self.curses.get_cell(x, y).copy()
             foreground = flick['foreground']
