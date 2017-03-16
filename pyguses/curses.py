@@ -146,8 +146,12 @@ class Curses():
     def get_colored_image(self, image, foreground, background):
         surface = image.copy()
         pixel_array = pygame.PixelArray(surface)
-        pixel_array.replace(self.default_foreground, colornames[foreground])
-        pixel_array.replace(self.default_background, colornames[background])
+        if colornames[foreground] != self.default_background:
+            pixel_array.replace(self.default_foreground, colornames[foreground])
+            pixel_array.replace(self.default_background, colornames[background]) 
+        else:
+            pixel_array.replace(self.default_background, colornames[background])
+            pixel_array.replace(self.default_foreground, colornames[foreground])               
         surface = pixel_array.surface
         return surface
         
