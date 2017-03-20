@@ -211,15 +211,8 @@ class Curses():
                                     break
                     if search:
                         char_list.append('/')
-                        count += 1
-                        
+                        count += 1                        
         return char_list
-        
-    def get_mouse_pos(self):
-        (x, y) = pygame.mouse.get_pos()
-        x_ind = int(np.floor(x / self.cell_width))
-        y_ind = int(np.floor(y / self.cell_height))
-        return (x_ind, y_ind)
 
     def get_cell_section(self, x, y, width, height):
         section = np.empty([height, width], dtype=dict)
