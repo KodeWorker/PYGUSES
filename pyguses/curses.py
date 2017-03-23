@@ -43,7 +43,7 @@ class Curses():
         self.colored_char_dict={}
         
         # Generate background surface
-        self.background = pygame.Surface((self.screen_width, self.screen_height))
+        self.background = pygame.Surface((self.screen_width, self.screen_height)).convert_alpha() 
         self.background.fill(colornames[self.color])
         self.foreground = pygame.Surface([self.screen_width, self.screen_height], pygame.SRCALPHA, 32).convert_alpha()        
     
@@ -63,7 +63,7 @@ class Curses():
         image_array = np.empty([height_count, width_count], dtype=pygame.Surface)
         for i in range(height_count):
             for j in range(width_count):
-                image_array[i ,j] = (surface.subsurface(j*width, i*height, width, height))
+                image_array[i ,j] = surface.subsurface(j*width, i*height, width, height).convert_alpha() 
                 image_array[i ,j] = pygame.transform.scale(image_array[i ,j], (self.cell_width, self.cell_height))
         return image_array
     
@@ -122,7 +122,7 @@ class Curses():
         self.window[y, x] = cell    
     
     def get_window_surface(self):
-        surface = pygame.Surface((int(self.cell_width*self.window.shape[1]), int(self.cell_height*self.window.shape[0])), pygame.SRCALPHA, 32)
+        surface = pygame.Surface((int(self.cell_width*self.window.shape[1]), int(self.cell_height*self.window.shape[0])), pygame.SRCALPHA, 32).convert_alpha()
         for i in range(self.window.shape[0]):
             for j in range(self.window.shape[1]):
                 subsurface = self.get_cell_surface(j, i)
@@ -161,8 +161,10 @@ class Curses():
         if len(ind) != 0:
             original_image = self.image_array[ind[0][0], ind[0][1]]
         else:
-            raise ValueError('No character-image mapping.')
-        
+            # No maching character -> generate surface from font
+            original_image = pygame.font.Font(None, 50).render(char, 0, self.default_foreground, self.default_background).convert_alpha() 
+            original_image = pygame.transform.scale(original_image, (self.cell_width, self.cell_height))
+            
         return original_image
     
     def get_char_array(self):
