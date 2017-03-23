@@ -156,10 +156,47 @@ class Curses():
         return surface
         
     def get_image_by_char(self, char):
+        # Check unique characters
+        if char == 'á':
+            ind = np.argwhere(self.char_array == '/a_prime')
+        elif char == 'é':
+            ind = np.argwhere(self.char_array == '/e_prime')
+        elif char == 'É':
+            ind = np.argwhere(self.char_array == '/E_prime')
+        elif char == 'í':
+            ind = np.argwhere(self.char_array == '/i_prime')
+        elif char == 'ó':
+            ind = np.argwhere(self.char_array == '/o_prime')
+        elif char == 'ú':
+            ind = np.argwhere(self.char_array == '/a_prime')
+        elif char == 'ä':
+            ind = np.argwhere(self.char_array == '/a:')
+        elif char == 'Ä':
+            ind = np.argwhere(self.char_array == '/A:')
+        elif char == 'ë':
+            ind = np.argwhere(self.char_array == '/e:')
+        elif char == 'ï':
+            ind = np.argwhere(self.char_array == '/i:')
+        elif char == 'ö':
+            ind = np.argwhere(self.char_array == '/o:')
+        elif char == 'Ö':
+            ind = np.argwhere(self.char_array == '/O:')
+        elif char == 'ü':
+            ind = np.argwhere(self.char_array == '/u:')
+        elif char == 'Ü':
+            ind = np.argwhere(self.char_array == '/U:')
+        elif char == 'â':
+            ind = np.argwhere(self.char_array == '/a^')
+        elif char == 'ê':
+            ind = np.argwhere(self.char_array == '/e^')
+        elif char == 'ô':
+            ind = np.argwhere(self.char_array == '/o^')
+        else:
+            ind = np.argwhere(self.char_array == char)
         
-        ind = np.argwhere(self.char_array == char)
+        
         if len(ind) != 0:
-            original_image = self.image_array[ind[0][0], ind[0][1]]
+            original_image = self.image_array[ind[0][0], ind[0][1]]        
         else:
             # No maching character -> generate surface from font
             original_image = pygame.font.Font(None, 50).render(char, 0, self.default_foreground, self.default_background).convert_alpha() 
