@@ -1,3 +1,6 @@
+# Special ALT Characters
+# http://www.tedmontgomery.com/tutorial/altchrc-a.html
+
 import os
 import configparser
 import pygame
@@ -157,44 +160,7 @@ class Curses():
         
     def get_image_by_char(self, char):
         # Check unique characters
-        if char == 'á':
-            ind = np.argwhere(self.char_array == '/a_prime')
-        elif char == 'é':
-            ind = np.argwhere(self.char_array == '/e_prime')
-        elif char == 'É':
-            ind = np.argwhere(self.char_array == '/E_prime')
-        elif char == 'í':
-            ind = np.argwhere(self.char_array == '/i_prime')
-        elif char == 'ó':
-            ind = np.argwhere(self.char_array == '/o_prime')
-        elif char == 'ú':
-            ind = np.argwhere(self.char_array == '/a_prime')
-        elif char == 'ä':
-            ind = np.argwhere(self.char_array == '/a:')
-        elif char == 'Ä':
-            ind = np.argwhere(self.char_array == '/A:')
-        elif char == 'ë':
-            ind = np.argwhere(self.char_array == '/e:')
-        elif char == 'ï':
-            ind = np.argwhere(self.char_array == '/i:')
-        elif char == 'ö':
-            ind = np.argwhere(self.char_array == '/o:')
-        elif char == 'Ö':
-            ind = np.argwhere(self.char_array == '/O:')
-        elif char == 'ü':
-            ind = np.argwhere(self.char_array == '/u:')
-        elif char == 'Ü':
-            ind = np.argwhere(self.char_array == '/U:')
-        elif char == 'â':
-            ind = np.argwhere(self.char_array == '/a^')
-        elif char == 'ê':
-            ind = np.argwhere(self.char_array == '/e^')
-        elif char == 'ô':
-            ind = np.argwhere(self.char_array == '/o^')
-        else:
-            ind = np.argwhere(self.char_array == char)
-        
-        
+        ind = np.argwhere(self.char_array == char)
         if len(ind) != 0:
             original_image = self.image_array[ind[0][0], ind[0][1]]        
         else:
@@ -206,51 +172,52 @@ class Curses():
     
     def get_char_array(self):
         # Character to image mapping
-        char_list_0 = ['', '/face', '/_face', '/heart', '/diamond', '/club', '/spade', '/coin', '/_coin', '/ring', '/_ring', '/male', '/female', '/16th', '/2*16th', '/flower']
-        char_list_1 = ['/Right', '/Left', '/updown', '/!!', '/P_', '/S_', '/b_', '/up_down', '/up', '/down', '/right', '/left', '/DLquot', '/_rightleft', '/Up', '/Down']
+        char_list_0 = ['', '☺', '☻', '♥', '♦', '♣', '♠', '●', '◘', '○', '◙', '♂', '♀', '♪', '♫', '☼']
+        char_list_1 = ['▶', '◀', '↕', '‼', '¶', '§', '▬', '↨', '↑', '↓', '→', '←', '∟', '↔', '▲', '▼']
         char_list_2 = [' ', '!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/']
         char_list_3 = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', ';', '<', '=', '>', '?']
         char_list_4 = ['@', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O']
         char_list_5 = ['P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '[', '\\', ']', '^', '_']
         char_list_6 = ['`', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o']
-        char_list_7 = ['p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '{', '|', '}', '~', '/Delta']
-        char_list_8 = ['/complement', '/u:', '/e_prime', '/a^', '/a:', '/a`', '/ao', '/c_', '/e^', '/e:', '/e`', '/i:', '/i^', '/i`', '/A:', '/Ao']
-        char_list_9 = ['/E_prime', '/ae', '/AE', '/o^', '/o:', '/o`', '/u^', '/u`', '/y:', '/O:', '/U:', '/cent', '/pound', '/yen', '/Pt', '/bigf']
-        char_list_10 = ['/a_prime', '/i_prime', '/o_prime', '/u_prime', '/n~', '/N~', '/^a_', '/^o_', '/inv?', '/ULquot', '/URquot', '/1/2', '/1/4', '/inv!', '/<<', '/>>']
-        char_list_11 = ['/l1', '/l2', '/l3', '/Vbar', '/Rjunc', '/R2junc', '/2Rjunc', '/U2Rcorner', '/2URcorner', '/2R2junc', '/2Vbar', '/2U2Rcorner', '/2D2Rcorner', '/D2Rcorner', '/2URcorner', '/URcorner']
-        char_list_12 = ['/DLcorner', '/Djunc', '/Ujunc', '/Ljunc', '/Hbar', '/Cbar', '/L2junc', '/2Ljunc', '/2D2Lcorner', '/2U2Lcorner', '/2D2junc', '/2U2junc', '/2L2junc', '/2Hbar', '/2Cbar', '/2Djunc']
-        char_list_13 = ['/D2junc', '/2Ujunc', '/U2junc', '/D2Lcorner', '/2DLcorner', '/2ULcorner', '/U2Lcorner', '/2HV', '/H2V', '/DRcorner', '/ULcorner', '/solid', '/DHsolid', '/LHsolid', '/RHsolid', '/UHsolid']
-        char_list_14 = ['/alpha', '/beta', '/GAMMA', '/PI', '/SIGMA', '/sigma', '/mu', '/gamma', '/PHI', '/theta', '/OMEGA', '/delta', '/infty', '/phi', '/IN', '/cap']
-        char_list_15 = ['/equiv', '/pm', '/geq', '/leq', '/cane', '/invcane', '/div', '/approx', '/degree', '/bullet', '/dot', '/sqrt', '/^n', '/^2', '/brick', '/empty']
+        char_list_7 = ['p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '{', '¦', '}', '~', '⌂']
+        char_list_8 = ['Ç', 'ü', 'é', 'â', 'ä', 'à', 'å', 'ç', 'ê', 'ë', 'è', 'ï', 'î', 'ì', 'Ä', 'Å']
+        char_list_9 = ['É', 'æ', 'Æ', 'ô', 'ö', 'ò', 'û', 'ù', 'ÿ', 'Ö', 'Ü', '¢', '£', '¥', '₧', 'ƒ']
+        char_list_10 = ['á', 'í', 'ó', 'ú', 'ñ', 'Ñ', 'ª', 'º', '¿', '⌐', '¬', '½', '¼', '¡', '«', '»']
+        char_list_11 = ['░', '▒', '▓', '│', '┤', '╡', '╢', '╖', '╕', '╣', '║', '╗', '╝', '╜', '╛', '┐']
+        char_list_12 = ['└', '┴', '┬', '├', '─', '┼', '╞', '╟', '╚', '╔', '╩', '╦', '╠', '═', '╬', '╧']
+        char_list_13 = ['╨', '╤', '╥', '╙', '╘', '╒', '╓', '╪', '╫', '┘', '┌', '█', '▄', '▌', '▐', '▀']
+        char_list_14 = ['α', 'β', 'Γ', 'Π', 'Σ', 'σ', 'μ', 'τ', 'Φ', 'Θ', 'Ω', 'δ', '∞', 'φ', 'ε', '∩']
+        char_list_15 = ['≡', '±', '≥', '≤', '⌠', '⌡', '÷', '≈', '˚', '•', '·', '√', 'ⁿ', '²', '■', ' ']
                 
         char_array = np.array([char_list_0, char_list_1, char_list_2, char_list_3, char_list_4, char_list_5, char_list_6, char_list_7, \
                                char_list_8, char_list_9, char_list_10, char_list_11, char_list_12, char_list_13, char_list_14, char_list_15])
         return char_array
     
     def get_char_list(self, message):
-        char_list = []
-        if '/' not in message:
-            char_list.extend(message)
-        else:
-            count = 0
-            while( count<len(message)):
-                if message[count] != '/':
-                    char_list.append(message[count])
-                    count += 1
-                else:
-                    search = True
-                    for i in range(self.char_array.shape[0]):
-                        for j in range(self.char_array.shape[1]):
-                            
-                            if self.char_array[i, j] in message[count:] and self.char_array[i, j] != '/' and '/' in self.char_array[i, j]:
-                                if message[count:].index(self.char_array[i, j]) == 0:                                
-                                    char_list.append(self.char_array[i, j])
-                                    count += len(self.char_array[i, j])
-                                    search = False
-                                    break
-                    if search:
-                        char_list.append('/')
-                        count += 1                        
+#        char_list = []
+#        if '/' not in message:
+#            char_list.extend(message)
+#        else:
+#            count = 0
+#            while( count<len(message)):
+#                if message[count] != '/':
+#                    char_list.append(message[count])
+#                    count += 1
+#                else:
+#                    search = True
+#                    for i in range(self.char_array.shape[0]):
+#                        for j in range(self.char_array.shape[1]):
+#                            
+#                            if self.char_array[i, j] in message[count:] and self.char_array[i, j] != '/' and '/' in self.char_array[i, j]:
+#                                if message[count:].index(self.char_array[i, j]) == 0:                                
+#                                    char_list.append(self.char_array[i, j])
+#                                    count += len(self.char_array[i, j])
+#                                    search = False
+#                                    break
+#                    if search:
+#                        char_list.append('/')
+#                        count += 1
+        char_list = list(message)             
         return char_list
 
     def get_cell_section(self, x, y, width, height):

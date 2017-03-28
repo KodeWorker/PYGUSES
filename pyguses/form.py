@@ -77,19 +77,19 @@ class Frame(Rect):
     
     def load_style(self):
         if self.style == 0:
-            self.UR = '/URcorner'
-            self.UL = '/ULcorner'
-            self.DR = '/DRcorner'
-            self.DL = '/DLcorner'
-            self.HL = '/Hbar'
-            self.VL = '/Vbar'
+            self.UR = '┐'
+            self.UL = '┌'
+            self.DR = '┘'
+            self.DL = '└'
+            self.HL = '─'
+            self.VL = '│'
         elif self.style == 1:
-            self.UR = '/2U2Rcorner'
-            self.UL = '/2U2Lcorner'
-            self.DR = '/2D2Rcorner'
-            self.DL = '/2D2Lcorner'
-            self.HL = '/2Hbar'
-            self.VL = '/2Vbar'
+            self.UR = '╗'
+            self.UL = '╔'
+            self.DR = '╝'
+            self.DL = '╚'
+            self.HL = '═'
+            self.VL = '║'
         else:
             raise ValueError('No corresponding style.')
     
